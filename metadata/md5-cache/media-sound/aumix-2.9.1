@@ -1,0 +1,14 @@
+DEFINED_PHASES=configure install
+DEPEND=sys-libs/ncurses gpm? ( sys-libs/gpm ) gtk? ( x11-libs/gtk+:2 ) nls? ( virtual/libintl ) virtual/pkgconfig nls? ( sys-devel/gettext )
+DESCRIPTION=Aumix volume/mixer control program
+EAPI=2
+HOMEPAGE=http://jpj.net/~trevor/aumix.html
+IUSE=gpm gtk nls
+KEYWORDS=alpha amd64 arm hppa ia64 ~mips ppc ppc64 sh sparc x86
+LICENSE=GPL-2
+RDEPEND=sys-libs/ncurses gpm? ( sys-libs/gpm ) gtk? ( x11-libs/gtk+:2 ) nls? ( virtual/libintl )
+SLOT=0
+SRC_URI=http://jpj.net/~trevor/aumix/releases/aumix-2.9.1.tar.bz2
+_eclass_exported_funcs=src_configure:- src_install:-
+_eclasses_=eutils	792f83d5ec9536cb5ccef375469d8bde	multilib	d062ae4ba2fc40a19c11de2ad89b6616	toolchain-funcs	82165206dedb2075f9a0fb8f9b1f9441
+_md5_=662cfdbbb33e9025cdc02a1a1347a0ed
