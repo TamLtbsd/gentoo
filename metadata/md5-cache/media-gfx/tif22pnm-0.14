@@ -1,0 +1,13 @@
+DEFINED_PHASES=install prepare
+DEPEND=>=media-libs/libpng-1.2:0 media-libs/tiff:0 !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.15:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4
+DESCRIPTION=tif22pnm and png22pnm command-line converters
+EAPI=4
+HOMEPAGE=http://pts.szit.bme.hu/ https://code.google.com/p/sam2p/
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-2
+RDEPEND=>=media-libs/libpng-1.2:0 media-libs/tiff:0
+SLOT=0
+SRC_URI=https://sam2p.googlecode.com/files/tif22pnm-0.14.tar.gz
+_eclass_exported_funcs=src_prepare:- src_install:-
+_eclasses_=autotools	07e71b3b5690738ef7e8bc097077e00c	eutils	792f83d5ec9536cb5ccef375469d8bde	flag-o-matic	8632fcd33a047954f007dee9a137bdcc	libtool	4890219c51da247200223277f993e054	multilib	d062ae4ba2fc40a19c11de2ad89b6616	toolchain-funcs	82165206dedb2075f9a0fb8f9b1f9441
+_md5_=af0b9c231f5fbc81717703108b526bfd
