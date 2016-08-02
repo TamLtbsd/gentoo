@@ -26,6 +26,7 @@ S="${WORKDIR}/${MY_P}.src"
 PATCHES=(
 	"${FILESDIR}"/${PN}-3.7.0-os_detection.patch
 	"${FILESDIR}"/${PN}-3.7.0-no_compat_symlinks.patch
+	"${FILESDIR}"/${PN}-3.8.1-glibc-detection.patch
 	)
 
 pkg_pretend() {
