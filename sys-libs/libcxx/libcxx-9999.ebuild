@@ -27,9 +27,10 @@ if [ "${PV%9999}" = "${PV}" ] ; then
 else
 	KEYWORDS=""
 fi
-IUSE="elibc_glibc elibc_musl libunwind +static-libs"
+IUSE="elibc_glibc elibc_musl libcxxrt libunwind +static-libs"
 
-RDEPEND="sys-libs/libcxxrt[libunwind=,static-libs?,${MULTILIB_USEDEP}]"
+RDEPEND="libcxxrt? ( sys-libs/libcxxrt[libunwind=,static-libs?,${MULTILIB_USEDEP}] )
+	!libcxxrt? ( sys-libs/libcxxabi[libunwind=,static-libs?,${MULTILIB_USEDEP}] )"
 DEPEND="${RDEPEND}
 	app-arch/xz-utils"
 
@@ -46,14 +47,15 @@ pkg_setup() {
 
 multilib_src_configure() {
 	local libdir=$(get_libdir)
+	local cxxabi=$(usex libcxxrt libcxxrt libcxxabi)
 
 	local mycmakeargs=(
 		-DLLVM_CONFIG_PATH=OFF
 		-DLIBCXX_LIBDIR_SUFFIX=${libdir#lib}
 		-DLIBCXX_ENABLE_SHARED=ON
 		-DLIBCXX_ENABLE_STATIC=$(usex static-libs)
-		-DLIBCXX_CXX_ABI=libcxxrt
-		-DLIBCXX_CXX_ABI_INCLUDE_PATHS="${EPREFIX}/usr/include/libcxxrt"
+		-DLIBCXX_CXX_ABI=${cxxabi}
+		-DLIBCXX_CXX_ABI_INCLUDE_PATHS="${EPREFIX}/usr/include/${cxxabi}"
 		-DLIBCXX_HAS_MUSL_LIBC=$(usex elibc_musl)
 		-DLIBCXX_HAS_GCC_S_LIB=$(usex !libunwind)
 	)
@@ -77,13 +79,14 @@ END_LDSCRIPT
 
 gen_static_ldscript() {
 	local libdir=$(get_libdir)
+	local cxxabi=$(usex libcxxrt libcxxrt libc++abi)
 
 	# Move it first.
 	mv "${ED}/usr/${libdir}/libc++.a" "${ED}/usr/${libdir}/libc++_static.a" || die
 
 	# Generate libc++.a ldscript for inclusion of its dependencies so that
 	# clang++ -stdlib=libc++ -static works out of the box.
-	local deps="${EPREFIX}/usr/${libdir}/libc++_static.a ${EPREFIX}/usr/${libdir}/libcxxrt.a"
+	local deps="${EPREFIX}/usr/${libdir}/libc++_static.a ${EPREFIX}/usr/${libdir}/${cxxabi}.a"
 	# On Linux/glibc it does not link without libpthread or libdl. It is
 	# fine on FreeBSD.
 	use elibc_glibc && deps+=" ${EPREFIX}/usr/${libdir}/libpthread.a ${EPREFIX}/usr/${libdir}/libdl.a"
@@ -95,9 +98,10 @@ gen_static_ldscript() {
 
 gen_shared_ldscript() {
 	local libdir=$(get_libdir)
+	local cxxabi=$(usex libcxxrt libcxxrt libc++abi)
 
 	mv "${ED}/usr/${libdir}/libc++.so" "${ED}/usr/${libdir}/libc++_shared.so" || die
-	local deps="${EPREFIX}/usr/${libdir}/libc++_shared.so ${EPREFIX}/usr/${libdir}/libcxxrt.so"
+	local deps="${EPREFIX}/usr/${libdir}/libc++_shared.so ${EPREFIX}/usr/${libdir}/${cxxabi}.so"
 	use libunwind && deps+=" ${EPREFIX}/usr/${libdir}/libunwind.so"
 	gen_ldscript "${deps}" > "${ED}/usr/${libdir}/libc++.so" || die
 }
