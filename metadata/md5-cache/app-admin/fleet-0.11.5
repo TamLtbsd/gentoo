@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile install test unpack
+DEPEND=>=dev-lang/go-1.4:= test? ( dev-go/go-tools ) virtual/pkgconfig
+DESCRIPTION=A Distributed init System
+EAPI=5
+HOMEPAGE=https://github.com/coreos/fleet
+IUSE=doc examples test
+KEYWORDS=~amd64
+LICENSE=Apache-2.0
+SLOT=0
+SRC_URI=https://github.com/coreos/fleet/archive/v0.11.5.tar.gz -> fleet-0.11.5.tar.gz
+_eclass_exported_funcs=src_unpack:vcs-snapshot src_compile:- src_test:- src_install:-
+_eclasses_=multilib	d062ae4ba2fc40a19c11de2ad89b6616	systemd	3165c885f3c71ffae7a867d931fb0e07	toolchain-funcs	82165206dedb2075f9a0fb8f9b1f9441	vcs-snapshot	2b65ecb2d0f91e4322c2ac8d673993bd
+_md5_=a6c4d2dd6c86ee6dc5f2b18894e07d7f

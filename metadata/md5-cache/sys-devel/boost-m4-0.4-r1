@@ -1,0 +1,11 @@
+DEFINED_PHASES=compile configure install prepare unpack
+DESCRIPTION=Another set of autoconf macros for compiling against boost
+EAPI=4
+HOMEPAGE=https://github.com/tsuna/boost.m4
+KEYWORDS=~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos
+LICENSE=GPL-3
+SLOT=0
+SRC_URI=https://github.com/tsuna/boost.m4/tarball/v0.4 -> boost-m4-0.4.tar.gz
+_eclass_exported_funcs=src_unpack:vcs-snapshot src_prepare:- src_configure:- src_compile:- src_install:-
+_eclasses_=eutils	792f83d5ec9536cb5ccef375469d8bde	multilib	d062ae4ba2fc40a19c11de2ad89b6616	toolchain-funcs	82165206dedb2075f9a0fb8f9b1f9441	vcs-snapshot	2b65ecb2d0f91e4322c2ac8d673993bd
+_md5_=b4f3765bd21a6f512d69da5a79e2ec52

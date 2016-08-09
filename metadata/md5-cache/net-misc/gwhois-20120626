@@ -1,0 +1,12 @@
+DEFINED_PHASES=install postinst
+DESCRIPTION=generic whois
+EAPI=0
+HOMEPAGE=http://gwhois.de/
+KEYWORDS=alpha amd64 hppa ppc ppc64 sparc x86
+LICENSE=GPL-2
+RDEPEND=www-client/lynx net-misc/curl dev-lang/perl dev-perl/libwww-perl dev-perl/Net-LibIDN
+SLOT=0
+SRC_URI=http://gwhois.de/gwhois/gwhois_20120626.tar.gz
+_eclass_exported_funcs=pkg_postinst:- src_install:-
+_eclasses_=eutils	792f83d5ec9536cb5ccef375469d8bde	multilib	d062ae4ba2fc40a19c11de2ad89b6616	toolchain-funcs	82165206dedb2075f9a0fb8f9b1f9441
+_md5_=cfccc9309385f1ea026ab16bb7aaf1e3

@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile prepare unpack
+DEPEND=>=dev-lang/lua-5.1:0[deprecated] dev-lua/luasocket dev-libs/openssl:0 virtual/pkgconfig
+DESCRIPTION=Lua binding for OpenSSL library to provide TLS/SSL communication
+EAPI=5
+HOMEPAGE=https://github.com/brunoos/luasec http://www.inf.puc-rio.br/~brunoos/luasec/
+KEYWORDS=~amd64 arm ~x86
+LICENSE=MIT
+RDEPEND=>=dev-lang/lua-5.1:0[deprecated] dev-lua/luasocket dev-libs/openssl:0
+SLOT=0
+SRC_URI=https://github.com/brunoos/luasec/tarball/063e8a8a5c57858cdc845f8d51b994426edd37ab -> luasec-0.4.1_p20130620.tar.gz
+_eclass_exported_funcs=src_unpack:vcs-snapshot src_prepare:- src_compile:-
+_eclasses_=multilib	d062ae4ba2fc40a19c11de2ad89b6616	toolchain-funcs	82165206dedb2075f9a0fb8f9b1f9441	vcs-snapshot	2b65ecb2d0f91e4322c2ac8d673993bd
+_md5_=4012f9dae453f510c7ca4527992ee741

@@ -1,0 +1,15 @@
+DEFINED_PHASES=compile configure install postinst prepare test
+DEPEND=ident? ( net-libs/libident ) ssl? ( gnutls? ( net-libs/gnutls ) !gnutls? ( dev-libs/openssl ) ) pam? ( virtual/pam ) tcpd? ( sys-apps/tcp-wrappers ) zlib? ( sys-libs/zlib ) >=sys-apps/sed-4
+DESCRIPTION=A IRC server written from scratch
+EAPI=5
+HOMEPAGE=http://ngircd.barton.de/
+IUSE=debug gnutls ident ipv6 pam ssl tcpd zlib
+KEYWORDS=~amd64 x86 ~x64-macos
+LICENSE=GPL-2
+RDEPEND=ident? ( net-libs/libident ) ssl? ( gnutls? ( net-libs/gnutls ) !gnutls? ( dev-libs/openssl ) ) pam? ( virtual/pam ) tcpd? ( sys-apps/tcp-wrappers ) zlib? ( sys-libs/zlib )
+RESTRICT=test
+SLOT=0
+SRC_URI=ftp://ngircd.barton.de/pub/ngircd/ngircd-20.3.tar.gz
+_eclass_exported_funcs=pkg_postinst:- src_prepare:autotools-utils src_configure:- src_compile:autotools-utils src_test:autotools-utils src_install:-
+_eclasses_=autotools	07e71b3b5690738ef7e8bc097077e00c	autotools-utils	419811142edf3516b0d0cf1a254d93cb	eutils	792f83d5ec9536cb5ccef375469d8bde	libtool	4890219c51da247200223277f993e054	multilib	d062ae4ba2fc40a19c11de2ad89b6616	toolchain-funcs	82165206dedb2075f9a0fb8f9b1f9441	user	c66cbe7502fe1161066eb947d15b79f6
+_md5_=0ce670379b4009db40a1f431ec0d7373

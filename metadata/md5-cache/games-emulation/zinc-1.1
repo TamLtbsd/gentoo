@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install postinst preinst prepare setup unpack
+DESCRIPTION=An x86 binary-only emulator for the Sony ZN-1, ZN-2, and Namco System 11 arcade systems
+EAPI=5
+HOMEPAGE=http://caesar.logiqx.com/php/emulator.php?id=zinc_linux
+KEYWORDS=-* amd64 x86
+LICENSE=freedist
+RDEPEND=x11-libs/libXext[abi_x86_32(-)] virtual/opengl[abi_x86_32(-)] games-misc/games-envd
+RESTRICT=strip
+SLOT=0
+SRC_URI=http://caesar.logiqx.com/zips/emus/linux/zinc_linux/zinc11-lnx.tar.bz2
+_eclass_exported_funcs=pkg_preinst:games pkg_postinst:games pkg_setup:games src_unpack:base src_prepare:base src_configure:games src_compile:games src_install:-
+_eclasses_=base	3fe4f8980633fd7bc69e9887209ba2fe	eutils	792f83d5ec9536cb5ccef375469d8bde	games	2cf0d67d765e6358b435ccda30c13ad8	multilib	d062ae4ba2fc40a19c11de2ad89b6616	toolchain-funcs	82165206dedb2075f9a0fb8f9b1f9441	user	c66cbe7502fe1161066eb947d15b79f6
+_md5_=9c784cc44b8f2190256f3a459c9554b4
