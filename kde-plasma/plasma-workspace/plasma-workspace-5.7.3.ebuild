@@ -120,7 +120,10 @@ DEPEND="${COMMON_DEPEND}
 	x11-proto/xproto
 "
 
-PATCHES=( "${FILESDIR}/${PN}-5.4-startkde-script.patch" )
+PATCHES=(
+	"${FILESDIR}/${PN}-5.4-startkde-script.patch"
+	"${FILESDIR}/${PN}-5.7.3-unused-dep.patch"
+)
 
 RESTRICT="test"
 
