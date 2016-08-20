@@ -4,7 +4,7 @@
 
 EAPI=6
 
-inherit eutils toolchain-funcs flag-o-matic
+inherit eutils toolchain-funcs flag-o-matic versionator
 
 DESCRIPTION="The rEFInd UEFI Boot Manager by Rod Smith"
 HOMEPAGE="http://www.rodsbooks.com/refind/"
@@ -150,23 +150,33 @@ src_install() {
 
 	dosbin "${S}/mkrlconf"
 	dosbin "${S}/mvrefind"
+	dosbin "${S}/refind-mkdefault"
 }
 
 pkg_postinst() {
 	elog "rEFInd has been built and installed into /usr/share/${P}"
 	elog "You will need to use the command 'refind-install' to install"
 	elog "the binaries into your EFI System Partition"
+	elog ""
 	if [[ -z "${REPLACING_VERSIONS}" ]]; then
-		elog ""
 		elog "refind-install requires additional packages to be fully functional:"
 		elog " app-crypt/sbsigntool for binary signing for use with SecureBoot"
 		elog " sys-boot/efibootmgr for writing to NVRAM"
 		elog " sys-block/parted for automatic ESP location and mount"
 		elog ""
+		elog "refind-mkdefault requires >=dev-lang/python-3"
+		elog ""
 		elog "A sample configuration can be found at"
 		elog "/usr/share/${P}/refind/refind.conf-sample"
 	else
-		ewarn "Note that this will not update any EFI binaries on your EFI"
-		ewarn "System Partition - this needs to be done manually."
+		local last_version=$(version_sort "${REPLACING_VERSIONS}")
+		local last_version=last_version[-1]
+		if ! version_is_at_least "0.10.3" "${last_version}"; then
+			elog "The new refind-mkdefault script requires >=dev-lang/python-3"
+			elog "to be installed"
+			elog ""
+		fi
+		ewarn "Note that this installation will not update any EFI binaries"
+		ewarn "on your EFI System Partition - this needs to be done manually"
 	fi
 }
