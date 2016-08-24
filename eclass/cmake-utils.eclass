@@ -421,6 +421,8 @@ _cmake_modify-cmakelists() {
 		Executable      \${CMAKE_EXE_LINKER_FLAGS}
 		Module          \${CMAKE_MODULE_LINKER_FLAGS}
 		Shared          \${CMAKE_SHARED_LINKER_FLAGS}\n")
+		include(FeatureSummary)
+		feature_summary(INCLUDE_QUIET_PACKAGES WHAT ALL)
 	_EOF_
 }
 
