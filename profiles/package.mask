@@ -30,6 +30,11 @@
 
 #--- END OF EXAMPLES ---
 
+# Craig Andrews <candrews@integralblue.com> (2 Aug 2016)
+# >=media-tv/kodi-17.0_alpha requires >=media-video/ffmpeg-3.0
+# which is hard masked see #574788
+>=media-tv/kodi-17.0_alpha
+
 # Brian Evans <grknight@gentoo.org> (22 Aug 2016)
 # PHP 5.5 has reached end of life and will no longer receive security updates.
 # Also include associated packages which do not work on newer versions
