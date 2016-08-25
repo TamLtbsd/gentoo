@@ -36,6 +36,16 @@ DEPEND="${RDEPEND}
 
 DOCS=( CREDITS.TXT )
 
+PATCHES=(
+	# allow building shared and static libs in one run; already implemented in
+	# upstream
+	"${FILESDIR}/${PN}-3.8.1-cmake.patch"
+
+	# back-port of https://reviews.llvm.org/D21637, fixing a compile error
+	# on musl-libc
+	"${FILESDIR}/${PN}-3.8.1-pthread-initializer.patch"
+	)
+
 pkg_setup() {
 	if tc-is-gcc && [[ $(gcc-version) < 4.7 ]] ; then
 		eerror "${PN} needs to be built with gcc-4.7 or later (or other"
@@ -50,7 +60,7 @@ multilib_src_configure() {
 	local cxxabi=$(usex libcxxrt libcxxrt libcxxabi)
 
 	local mycmakeargs=(
-		-DLLVM_CONFIG_PATH=OFF
+		-DLLVM_CONFIG=OFF
 		-DLIBCXX_LIBDIR_SUFFIX=${libdir#lib}
 		-DLIBCXX_ENABLE_SHARED=ON
 		-DLIBCXX_ENABLE_STATIC=$(usex static-libs)
